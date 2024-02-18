@@ -3,6 +3,7 @@
 import queue
 import time
 import random
+import sys
 
 
 request_queue = queue.Queue()
@@ -24,10 +25,16 @@ def process_request():
     else:
         print('Черга порожня')
 
-while request_number < 20:
-    generate_request() 
-    process_request()
-    time.sleep(random.randint(1, 3))
+try:
+    while request_number < 20:
+        generate_request() 
+        process_request()
+        time.sleep(random.randint(1, 3))
+except KeyboardInterrupt:
+    print("Програма припинена користувачем.") # Комбінація ctrl + c зупиняє программу
+    sys.exit(0)
+    
+    
 
 
 
